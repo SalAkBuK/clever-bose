@@ -1,0 +1,316 @@
+/**
+ * BridgeFooter Component Styles
+ *
+ * Single unified stage:
+ * - The entire bridge graphic IS the footer container.
+ * - Text lives DIRECTLY inside the sky of the graphic with transparent backgrounds.
+ * - Scroll-triggered editorial stagger reveal animation.
+ * - Train passes below the text along the viaduct track with ZERO overlap.
+ *
+ * EXACT CALIBRATED TRAIN CONSTANTS PRESERVED:
+ *   --train-vertical-pos: 49.17%
+ *   --train-wheel-pad: 3.03%
+ *   --train-aspect-ratio: calc(1320 / 297)
+ *   --train-width: 49.5%
+ *   --train-duration: 29.9s
+ */
+
+:root {
+  /* Rail deck surface across Arch 3 is at Y=356 of 724px: 356 / 724 = 49.1713% */
+  --train-vertical-pos: 49.17%;
+  --train-baseline-offset: 0px;
+
+  /* Empty transparent padding below visible wheels (9px of 297px = 3.0303%) */
+  --train-wheel-pad: 3.03%;
+
+  /* Train dimensions and animation speed */
+  --train-width: 49.5%;
+  --train-aspect-ratio: calc(1320 / 297);
+  --train-preview-x: 25cqi;
+  --train-duration: 29.9s;
+
+  --train-start-x: calc(-100% - 40px);
+  --train-end-x: calc(100cqi + 40px);
+
+  /* Typography Colors */
+  --bf-ink-dark: #231b14;
+  --bf-ink-medium: #453628;
+  --bf-ink-muted: #6e5843;
+  --bf-terracotta: #a83606;
+}
+
+/* =================================================================
+ * 1. SINGLE UNIFIED FOOTER CONTAINER
+ * ================================================================= */
+.bridge-footer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 2172 / 724;
+  margin: 0;
+  padding: 0;
+  container-type: inline-size;
+  container-name: stage;
+  user-select: none;
+  background: transparent;
+}
+
+/* Base Bridge Image fills the entire footer container */
+.bridge-base-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* =================================================================
+ * 2. SKY CONTENT OVERLAY WITH STAGGERED SCROLL REVEAL
+ * Positioned in the upper sky zone (top 3% to ~15%) with ZERO overlap
+ * ================================================================= */
+.bridge-sky-content {
+  position: absolute;
+  top: 3%;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  pointer-events: auto;
+  padding: 0 4cqi;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1.3fr 2fr;
+  gap: 3.5cqi;
+  align-items: flex-start;
+  background: transparent;
+}
+
+/* Initial hidden state for reveal items */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Revealed state when footer scrolls into view */
+.bridge-sky-content--revealed .reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--stagger-index, 0) * 100ms);
+}
+
+/* Brand styling */
+.brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35cqi;
+  background: transparent;
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6cqi;
+  background: transparent;
+}
+
+.brand-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: clamp(8px, 0.75cqi, 11px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--bf-terracotta);
+  background: rgba(168, 54, 6, 0.08);
+  border: 1px solid rgba(168, 54, 6, 0.3);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.brand-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(12px, 1.5cqi, 20px);
+  font-weight: 700;
+  color: var(--bf-ink-dark);
+  margin: 0;
+}
+
+.brand-desc {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(9px, 0.95cqi, 13px);
+  line-height: 1.4;
+  color: var(--bf-ink-medium);
+  margin: 0;
+  max-width: 36cqi;
+}
+
+.copyright-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(8px, 0.75cqi, 11px);
+  color: var(--bf-ink-muted);
+  margin: 0.2cqi 0 0 0;
+}
+
+/* Nav Columns */
+.nav-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2cqi;
+  background: transparent;
+}
+
+.nav-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35cqi;
+  background: transparent;
+}
+
+.nav-col-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: clamp(8px, 0.8cqi, 11px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bf-ink-dark);
+  margin: 0;
+  border-bottom: 1px solid rgba(70, 50, 30, 0.25);
+  padding-bottom: 0.25cqi;
+}
+
+.nav-link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25cqi;
+  background: transparent;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(9px, 0.88cqi, 12px);
+  color: var(--bf-ink-medium);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  width: fit-content;
+}
+
+.nav-link:hover {
+  color: var(--bf-terracotta);
+  transform: translateY(-1px);
+}
+
+/* =================================================================
+ * 3. TRAIN LAYER
+ * ================================================================= */
+.bridge-train-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bridge-footer__train-slot {
+  position: absolute;
+  left: 0;
+  top: calc(var(--train-vertical-pos) + var(--train-baseline-offset));
+  width: var(--train-width);
+  aspect-ratio: var(--train-aspect-ratio);
+  transform: translateY(calc(-100% + var(--train-wheel-pad, 3.03%)));
+  pointer-events: none;
+}
+
+.bridge-footer__train-mover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: train-travel var(--train-duration, 29.9s) linear infinite;
+  will-change: transform;
+}
+
+@keyframes train-travel {
+  0% {
+    transform: translateX(var(--train-start-x));
+  }
+  100% {
+    transform: translateX(var(--train-end-x));
+  }
+}
+
+.bridge-footer__train-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bridge-footer__train-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Debug calibration guide */
+.bridge-footer__debug-guide {
+  display: flex;
+  position: absolute;
+  left: var(--train-preview-x);
+  top: calc(var(--train-vertical-pos) + var(--train-baseline-offset));
+  width: var(--train-width);
+  aspect-ratio: var(--train-aspect-ratio);
+  transform: translateY(calc(-100% + var(--train-wheel-pad, 3.03%)));
+  pointer-events: none;
+  z-index: 5;
+}
+
+.bridge-footer__debug-box {
+  position: absolute;
+  inset: 0;
+  border: 1.5px dashed rgba(37, 99, 235, 0.65);
+  background-color: rgba(37, 99, 235, 0.03);
+}
+
+.bridge-footer__debug-wheel-line {
+  position: absolute;
+  bottom: var(--train-wheel-pad, 3.03%);
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #16a34a;
+}
+
+.bridge-footer__debug-baseline {
+  position: absolute;
+  bottom: var(--train-wheel-pad, 3.03%);
+  left: -80px;
+  right: -80px;
+  height: 2px;
+  background: #dc2626;
+}
+
+.bridge-footer--hide-debug .bridge-footer__debug-guide {
+  display: none !important;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .bridge-footer__train-mover {
+    animation: none !important;
+    transform: translateX(var(--train-preview-x)) !important;
+  }
+}
