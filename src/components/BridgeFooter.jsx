@@ -41,24 +41,12 @@ export default function BridgeFooter({
   const [isRevealed, setIsRevealed] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsRevealed(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px',
-      }
-    );
+    // Smooth stagger reveal on mount
+    const raf = requestAnimationFrame(() => {
+      setIsRevealed(true);
+    });
 
-    if (footerRef.current) {
-      observer.observe(footerRef.current);
-    }
-
-    return () => observer.disconnect();
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   const debugClass = !showDebugGuide ? 'bridge-footer--hide-debug' : '';
@@ -71,7 +59,7 @@ export default function BridgeFooter({
       className={`bridge-footer ${debugClass} ${className}`}
       role="contentinfo"
     >
-      {/* 1. Text lives DIRECTLY inside the sky of the graphic with scroll-triggered stagger reveal */}
+      {/* 1. Text lives DIRECTLY inside the sky of the graphic with stagger reveal */}
       <div className={`bridge-sky-content ${revealClass}`}>
         <div className="brand-col reveal-item" style={{ '--stagger-index': 0 }}>
           <div className="brand-header">
@@ -108,7 +96,7 @@ export default function BridgeFooter({
         </div>
       </div>
 
-      {/* 2. Train and Bridge stay in the exact same frame */}
+      {/* 2. Train Layer with GPU-accelerated horizontal travel */}
       <div className="bridge-train-layer" aria-hidden="true">
         <div className="bridge-footer__train-slot">
           <div className="bridge-footer__train-mover">
@@ -119,6 +107,8 @@ export default function BridgeFooter({
                 alt=""
                 className="bridge-footer__train-img"
                 draggable="false"
+                loading="eager"
+                fetchPriority="high"
               />
             </picture>
           </div>
@@ -140,14 +130,18 @@ export default function BridgeFooter({
         className="bridge-foreground-img"
         aria-hidden="true"
         draggable="false"
+        loading="eager"
+        fetchPriority="high"
       />
 
-      {/* Base Bridge Graphic */}
+      {/* 4. Base Bridge Graphic */}
       <img
         src={bridgeBase}
         alt="The Grand Imperial Viaduct monumental civil engineering panorama"
         className="bridge-base-img"
         draggable="false"
+        loading="eager"
+        fetchPriority="high"
       />
     </footer>
   );
