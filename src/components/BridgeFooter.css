@@ -18,7 +18,8 @@
 :root {
   /* Rail deck surface across Arch 3 is at Y=356 of 724px: 356 / 724 = 49.1713% */
   --train-vertical-pos: 49.17%;
-  --train-baseline-offset: 0px;
+  /* Recessed track bed behind parapet balustrade (+10px of 724px = 1.38% ~ 1.4%) */
+  --train-baseline-offset: 1.4%;
 
   /* Empty transparent padding below visible wheels (9px of 297px = 3.0303%) */
   --train-wheel-pad: 3.03%;
@@ -55,13 +56,26 @@
   background: transparent;
 }
 
-/* Base Bridge Image fills the entire footer container */
+/* Base Bridge Image fills the entire footer container (Layer 1) */
 .bridge-base-img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: fill;
   pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* Foreground Bridge Layer (Layer 3: balustrade wall & stone pillar caps occluding train wheels) */
+.bridge-foreground-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
   -webkit-user-drag: none;
 }
 

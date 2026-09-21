@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import bridgeBase from '../assets/bridge-base.png';
+import bridgeForeground from '../assets/bridge-foreground.png';
 import trainStatic from '../assets/train_static_1320.webp';
 import trainAnimated from '../assets/train_animated_transparent_seamless_1320.webp';
 import './BridgeFooter.css';
@@ -131,6 +132,15 @@ export default function BridgeFooter({
           </div>
         )}
       </div>
+
+      {/* 3. Bridge Foreground Layer (balustrade wall & stone pillar caps occluding train wheels) */}
+      <img
+        src={bridgeForeground}
+        alt=""
+        className="bridge-foreground-img"
+        aria-hidden="true"
+        draggable="false"
+      />
 
       {/* Base Bridge Graphic */}
       <img
