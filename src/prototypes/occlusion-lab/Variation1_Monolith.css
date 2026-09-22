@@ -1,0 +1,353 @@
+/**
+ * Variation 1: Monumental Structural Plane
+ * Visual Language: Editorial Restraint x Civil Engineering Monolith
+ */
+
+.monolith-composition {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  background-color: var(--ink);
+  overflow: hidden;
+  border-top: 1px solid var(--bone-12);
+  border-bottom: 1px solid var(--bone-12);
+  user-select: none;
+}
+
+/* 1. BACKGROUND STRATUM */
+.monolith-bg-stratum {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.monolith-datum-rule {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--bone-08);
+}
+
+.monolith-elevation-spine {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  height: 24px;
+}
+
+.spine-mark {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  transition: left 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spine-pip {
+  width: 3px;
+  height: 3px;
+  background-color: var(--terracotta);
+}
+
+.spine-coord {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+/* 2. MIDGROUND: PAYLOAD STREAM (Travels behind the monolith) */
+.monolith-payload-track {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding-left: 360px; /* Room for monolith on the left */
+  box-sizing: border-box;
+}
+
+.monolith-payload-stream {
+  display: flex;
+  gap: 120px;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.monolith-stage-block {
+  width: 600px;
+  flex-shrink: 0;
+  opacity: 0.25;
+  transition: opacity 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.monolith-stage-block--active {
+  opacity: 1;
+}
+
+.monolith-stage-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.monolith-stage-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--terracotta);
+}
+
+.monolith-stage-domain {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--bone-40);
+  text-transform: uppercase;
+}
+
+.monolith-stage-title {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  line-height: 1.15;
+  font-weight: 400;
+  color: var(--bone);
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.monolith-stage-narrative {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--bone-80);
+  margin: 0;
+  max-width: 540px;
+}
+
+/* Technical ledger: pure editorial typography, zero card nesting */
+.monolith-technical-ledger {
+  margin: 12px 0 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 28px;
+  border-top: 1px solid var(--bone-12);
+  padding-top: 18px;
+}
+
+.ledger-datum {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ledger-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--bone-40);
+  text-transform: uppercase;
+}
+
+.ledger-value {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--bone-95);
+}
+
+.ledger-datum--highlight .ledger-value {
+  color: var(--bone);
+}
+
+/* 3. FOREGROUND MONOLITH: The Dominant Structural Mass */
+.monolith-foreground-structure {
+  position: absolute;
+  top: 0;
+  bottom: 60px; /* Leaves room for bottom axis */
+  left: 0;
+  width: 320px;
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+}
+
+.monolith-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--ink);
+  border-right: 1px solid var(--bone-12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 28px;
+  box-sizing: border-box;
+}
+
+.monolith-joint-line {
+  height: 1px;
+  background-color: var(--bone-08);
+  width: 100%;
+}
+
+.monolith-vertical-slit {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.slit-hairline {
+  width: 1px;
+  height: 100%;
+  background-color: var(--bone-12);
+}
+
+.slit-datum-label {
+  position: absolute;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  color: var(--terracotta);
+  background-color: var(--ink);
+  padding: 12px 0;
+}
+
+.monolith-stamp {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stamp-symbol {
+  font-size: 8px;
+  color: var(--terracotta);
+}
+
+.stamp-id {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--bone-60);
+}
+
+.stamp-dimension {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  color: var(--bone-40);
+}
+
+.monolith-cast-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 90px;
+  background: linear-gradient(to right, rgba(8, 10, 11, 0.95), transparent);
+  pointer-events: none;
+}
+
+/* X-Ray Mode: proves physical occlusion by rendering the monolith translucent */
+.monolith-composition--xray .monolith-face {
+  background-color: var(--ink-30);
+  border-right-style: dashed;
+}
+
+.monolith-composition--xray .monolith-cast-shadow {
+  opacity: 0;
+}
+
+/* 4. RESTRAINED MINIMAL CONTROLS */
+.monolith-station-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  border-top: 1px solid var(--bone-12);
+  background-color: var(--ink);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 36px;
+  box-sizing: border-box;
+}
+
+.station-axis {
+  display: flex;
+  gap: 28px;
+}
+
+.station-point {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--bone-40);
+  transition: color 0.2s ease;
+}
+
+.station-point:hover {
+  color: var(--bone-80);
+}
+
+.station-point--active {
+  color: var(--bone);
+}
+
+.station-ordinal {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.station-name {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.station-datum-display {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+
+.datum-key {
+  color: var(--bone-40);
+}
+
+.datum-val {
+  color: var(--terracotta);
+  font-weight: 500;
+}

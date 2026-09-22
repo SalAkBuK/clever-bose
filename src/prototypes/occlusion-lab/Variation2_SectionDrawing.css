@@ -1,0 +1,519 @@
+/**
+ * Variation 2: Editorial Section Drawing
+ * Visual Language: Civil Engineering Section Elevation x Architectural Folio
+ * Strict 3-Color System:
+ *   INK:              #080A0B
+ *   BONE:             #F2F0E9
+ *   SIGNAL TERRACOTTA: #A83606
+ */
+
+.section-drawing {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  background-color: var(--ink);
+  overflow: hidden;
+  border-top: 1px solid var(--bone-12);
+  border-bottom: 1px solid var(--bone-12);
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+/* 1. PLATE HEADER */
+.drawing-folio-header {
+  padding: 32px 48px 20px 48px;
+  border-bottom: 1px solid var(--bone-08);
+  background-color: var(--ink);
+  z-index: 10;
+}
+
+.folio-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.folio-plate {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.folio-divider {
+  color: var(--bone-20);
+  font-size: 10px;
+}
+
+.folio-system {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--bone-40);
+}
+
+.folio-title {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 400;
+  color: var(--bone);
+  margin: 0 0 10px 0;
+  letter-spacing: -0.015em;
+}
+
+.folio-narrative {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--bone-80);
+  margin: 0;
+  max-width: 780px;
+}
+
+/* 2. MAIN SECTION ELEVATION VIEWPORT */
+.drawing-body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ELEVATION SURVEYOR AXIS (Left Margin) */
+.drawing-surveyor-axis {
+  width: 240px;
+  padding: 32px 24px 32px 48px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  border-right: 1px solid var(--bone-08);
+  z-index: 8;
+  background-color: var(--ink);
+}
+
+.axis-track-line {
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: 53px;
+  width: 1px;
+  background-color: var(--bone-12);
+  z-index: 1;
+}
+
+.elevation-datum-mark {
+  background: none;
+  border: none;
+  padding: 8px 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  opacity: 0.35;
+  transition: opacity 0.25s ease;
+}
+
+.elevation-datum-mark:hover {
+  opacity: 0.8;
+}
+
+.elevation-datum-mark--active {
+  opacity: 1;
+}
+
+.datum-crosshair {
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--bone-40);
+  border-radius: 50%;
+  position: relative;
+  background-color: var(--ink);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.elevation-datum-mark--active .datum-crosshair {
+  border-color: var(--terracotta);
+  background-color: var(--terracotta);
+}
+
+.datum-elevation {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--bone);
+  font-weight: 500;
+  width: 58px;
+}
+
+.elevation-datum-mark--active .datum-elevation {
+  color: var(--terracotta);
+}
+
+.datum-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--bone-40);
+}
+
+/* DRAWING CANVAS */
+.drawing-canvas {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Continuous Sectional Cut Datum Line */
+.datum-cut-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  display: flex;
+  align-items: center;
+  z-index: 4;
+  transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.cut-callout {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--terracotta);
+  background-color: var(--ink);
+  padding: 2px 14px 2px 28px;
+  flex-shrink: 0;
+}
+
+.cut-line-rule {
+  flex: 1;
+  height: 1px;
+  background-color: var(--bone-12);
+}
+
+/* Midground Payload Track & Stream */
+.drawing-payload-track {
+  position: absolute;
+  top: 80px;
+  bottom: 80px;
+  left: 28px;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.drawing-payload-stream {
+  display: flex;
+  gap: 80px;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.drawing-stage-artifact {
+  width: 480px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0.2;
+  transition: opacity 0.5s ease;
+}
+
+.drawing-stage-artifact--active {
+  opacity: 1;
+}
+
+.artifact-identity {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.artifact-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.artifact-domain {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--bone-40);
+}
+
+.artifact-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--bone);
+  margin: 0;
+  font-weight: 400;
+}
+
+.artifact-annotated-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.annotation-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.annotation-point {
+  width: 4px;
+  height: 4px;
+  background-color: var(--bone-40);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.annotation-point--signal {
+  background-color: var(--terracotta);
+}
+
+.annotation-rule {
+  width: 28px;
+  height: 1px;
+  background-color: var(--bone-12);
+  flex-shrink: 0;
+}
+
+.annotation-rule--signal {
+  background-color: var(--terracotta-40);
+}
+
+.annotation-text {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.annot-key {
+  color: var(--bone-40);
+  letter-spacing: 0.1em;
+  font-size: 9.5px;
+}
+
+.annot-val {
+  color: var(--bone-95);
+}
+
+.annotation-line--highlight .annot-val {
+  color: var(--bone);
+  font-weight: 500;
+}
+
+/* FOREGROUND: Structural Foundation Pier & Retaining Bulkhead (OCCLUSION LAYER) */
+.drawing-foreground-masonry {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* Monumental Vertical Pier on the Right */
+.masonry-vertical-pier {
+  position: absolute;
+  top: 0;
+  bottom: 72px;
+  right: 0;
+  width: 320px;
+  background-color: var(--ink);
+  border-left: 1px solid var(--bone-12);
+  display: flex;
+  flex-direction: column;
+}
+
+.pier-cap {
+  height: 4px;
+  background-color: var(--bone-20);
+  width: 100%;
+}
+
+.pier-face {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 28px;
+  box-sizing: border-box;
+}
+
+.pier-elevation-guide {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pier-datum-rule {
+  width: 24px;
+  height: 1px;
+  background-color: var(--terracotta);
+}
+
+.pier-datum-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.pier-section-stamp {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid var(--bone-08);
+  padding-top: 14px;
+}
+
+.stamp-title {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--bone-60);
+  font-weight: 500;
+}
+
+.stamp-sub {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  color: var(--bone-40);
+}
+
+.pier-cast-shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: 60px;
+  background: linear-gradient(to left, rgba(8, 10, 11, 0.9), transparent);
+}
+
+/* Subterranean deck at the bottom */
+.masonry-subterranean-deck {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background-color: var(--ink);
+  border-top: 1px solid var(--bone-12);
+}
+
+.hatch-pattern {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(242, 240, 233, 0.03) 10px,
+    rgba(242, 240, 233, 0.03) 11px
+  );
+}
+
+.deck-boundary-rule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--bone-12);
+}
+
+.deck-annotation-row {
+  position: absolute;
+  bottom: 12px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck-annotation {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  color: var(--bone-40);
+}
+
+.deck-datum-val {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+/* X-Ray Mode: proves physical occlusion */
+.section-drawing--xray .masonry-vertical-pier,
+.section-drawing--xray .masonry-subterranean-deck {
+  background-color: var(--ink-30);
+  border-style: dashed;
+}
+
+.section-drawing--xray .pier-cast-shadow {
+  opacity: 0;
+}
+
+/* 3. FOOTER COLOPHON */
+.drawing-colophon-bar {
+  height: 44px;
+  border-top: 1px solid var(--bone-08);
+  background-color: var(--ink);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+.colophon-datum {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+}
+
+.colophon-label {
+  color: var(--bone-40);
+}
+
+.colophon-value {
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.colophon-nav-instruction {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--bone-40);
+}

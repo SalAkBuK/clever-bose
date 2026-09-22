@@ -1,0 +1,643 @@
+/**
+ * Occlusion Lab Master Workbench Styles
+ * Theme: Architectural Draughtsmanship & Mechanical Depth Laboratory
+ */
+
+.occlusion-lab {
+  min-height: 100vh;
+  background-color: #05070a;
+  color: #e2e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================================
+   1. Laboratory Header & Context
+   ========================================================================= */
+.lab-header {
+  padding: 32px 48px 24px 48px;
+  background: #080b10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lab-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.lab-branding {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.lab-symbol {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 32px;
+  color: #a83606;
+  line-height: 1;
+  padding: 4px 10px;
+  background: rgba(168, 54, 6, 0.1);
+  border: 1px solid rgba(168, 54, 6, 0.3);
+  border-radius: 4px;
+}
+
+.lab-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lab-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #8c95a5;
+}
+
+.lab-pipe {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.lab-prototype-badge {
+  color: #a83606;
+  font-weight: 700;
+}
+
+.lab-main-title {
+  margin: 4px 0 0 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.lab-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.lab-return-btn {
+  background: #111520;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #a0aec0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lab-return-btn:hover {
+  background: #192030;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.lab-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(168, 54, 6, 0.08);
+  border: 1px solid rgba(168, 54, 6, 0.25);
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.status-pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e24a0d;
+}
+
+.status-pip.pulse {
+  box-shadow: 0 0 0 0 rgba(226, 74, 13, 0.7);
+  animation: pipPulse 2s infinite;
+}
+
+@keyframes pipPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(226, 74, 13, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(226, 74, 13, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(226, 74, 13, 0);
+  }
+}
+
+.status-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: #e24a0d;
+  font-weight: 700;
+}
+
+.lab-hypothesis-bar {
+  margin-top: 24px;
+  background: #0d1118;
+  border-left: 3px solid #a83606;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 14px 20px;
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hypothesis-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: #a83606;
+  font-weight: 700;
+}
+
+.hypothesis-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.hypothesis-metadata {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  color: #718096;
+}
+
+.hypothesis-metadata strong {
+  color: #cbd5e1;
+}
+
+/* =========================================================================
+   2. Experimentation HUD Controls Panel
+   ========================================================================= */
+.lab-controls-panel {
+  padding: 24px 48px;
+  background: #090c12;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 1024px) {
+  .lab-controls-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.control-group-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #718096;
+  font-weight: 700;
+}
+
+.approach-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.approach-tab {
+  background: #10141e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.approach-tab:hover {
+  background: #151a27;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.approach-tab--active {
+  background: #171d2b;
+  border-color: #a83606;
+  box-shadow: 0 0 0 1px #a83606, 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.tab-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #a83606;
+  font-weight: 700;
+}
+
+.tab-name {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tab-desc {
+  font-size: 10.5px;
+  color: #8c95a5;
+  line-height: 1.35;
+}
+
+/* Toggles Grid */
+.toggles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  height: 100%;
+}
+
+.toggle-card {
+  background: #10141e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toggle-name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.toggle-sub {
+  font-size: 10px;
+  color: #718096;
+}
+
+/* Master Occlusion Switch Button */
+.switch-button {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: all 0.25s ease;
+  border: 1px solid;
+}
+
+.switch-button--on {
+  background: rgba(168, 54, 6, 0.25);
+  border-color: #a83606;
+  color: #ffffff;
+}
+
+.switch-button--on .switch-handle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e24a0d;
+  box-shadow: 0 0 8px #e24a0d;
+}
+
+.switch-button--off {
+  background: #161922;
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #8c95a5;
+}
+
+.switch-button--off .switch-handle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4a5568;
+}
+
+/* Solo buttons row */
+.solo-buttons-row {
+  display: flex;
+  gap: 4px;
+}
+
+.solo-btn {
+  flex: 1;
+  background: #171b26;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #8c95a5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  padding: 6px 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.solo-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.solo-btn--active {
+  background: #252c3c;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  font-weight: 700;
+}
+
+/* =========================================================================
+   3. Active Experimental Spatial Stage
+   ========================================================================= */
+.lab-stage-container {
+  padding: 24px 48px;
+  flex: 1;
+}
+
+.stage-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.meta-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.meta-bracket {
+  color: #a83606;
+  font-weight: 700;
+}
+
+.meta-title {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #e2e8f0;
+  font-weight: 700;
+}
+
+.meta-elevation-pill {
+  background: #141923;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #a0aec0;
+  font-size: 9.5px;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.meta-right {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+}
+
+.no-occlusion-warning {
+  color: #f59e0b;
+  letter-spacing: 0.08em;
+}
+
+.occlusion-active-badge {
+  color: #10b981;
+  letter-spacing: 0.08em;
+}
+
+.stage-viewport-frame {
+  width: 100%;
+}
+
+/* =========================================================================
+   4. Comparative Evaluation Matrix
+   ========================================================================= */
+.lab-eval-matrix {
+  padding: 36px 48px;
+  background: #07090e;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.eval-header {
+  margin-bottom: 24px;
+}
+
+.eval-title {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.eval-sub {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10.5px;
+  color: #718096;
+}
+
+.eval-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .eval-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.eval-card {
+  background: #0d1017;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.2s ease;
+}
+
+.eval-card--highlighted {
+  border-color: rgba(168, 54, 6, 0.5);
+  background: #111520;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.card-approach-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: #a83606;
+  font-weight: 700;
+}
+
+.card-approach-title {
+  margin: 4px 0 0 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.eval-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.eval-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.metric-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.metric-val {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #cbd5e1;
+}
+
+.eval-select-btn {
+  background: #161b26;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  padding: 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  transition: all 0.15s ease;
+}
+
+.eval-select-btn:hover {
+  background: #202636;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.eval-card--highlighted .eval-select-btn {
+  background: rgba(168, 54, 6, 0.2);
+  border-color: #a83606;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* =========================================================================
+   5. Direct Coherence Check with Protected Grand Imperial Viaduct Footer
+   ========================================================================= */
+.lab-footer-coherence {
+  padding: 36px 48px;
+  background: #05070a;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.coherence-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.coherence-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.coherence-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: #a83606;
+  font-weight: 700;
+}
+
+.coherence-title {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.coherence-desc {
+  margin: 4px 0 0 0;
+  font-size: 12.5px;
+  color: #8c95a5;
+  max-width: 700px;
+}
+
+.toggle-footer-preview-btn {
+  background: #111622;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-footer-preview-btn:hover {
+  background: #1c2333;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.viaduct-footer-wrapper {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9);
+}

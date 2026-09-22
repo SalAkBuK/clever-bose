@@ -1,0 +1,72 @@
+/**
+ * MONUMENTAL TECHNICAL EDITORIAL — CORE TOKENS & SYSTEM STYLES
+ * Strict 3-Color Discipline:
+ *   INK:              #080A0B
+ *   BONE:             #F2F0E9
+ *   SIGNAL TERRACOTTA: #A83606
+ *
+ * Typography:
+ *   Display: Large Editorial Serif ('Newsreader', 'Cormorant Garamond', Georgia, serif)
+ *   Technical: Small Restrained Monospace ('JetBrains Mono', Consolas, monospace)
+ */
+
+:root {
+  --ink: #080a0b;
+  --bone: #f2f0e9;
+  --terracotta: #a83606;
+
+  /* Opacity scales — STRICTLY monochromatic Ink & Bone, plus Terracotta */
+  --ink-95: rgba(8, 10, 11, 0.95);
+  --ink-90: rgba(8, 10, 11, 0.90);
+  --ink-80: rgba(8, 10, 11, 0.80);
+  --ink-60: rgba(8, 10, 11, 0.60);
+  --ink-30: rgba(8, 10, 11, 0.30);
+
+  --bone-95: rgba(242, 240, 233, 0.95);
+  --bone-80: rgba(242, 240, 233, 0.80);
+  --bone-60: rgba(242, 240, 233, 0.60);
+  --bone-40: rgba(242, 240, 233, 0.40);
+  --bone-20: rgba(242, 240, 233, 0.20);
+  --bone-12: rgba(242, 240, 233, 0.12);
+  --bone-08: rgba(242, 240, 233, 0.08);
+  --bone-04: rgba(242, 240, 233, 0.04);
+
+  --terracotta-90: rgba(168, 54, 6, 0.90);
+  --terracotta-40: rgba(168, 54, 6, 0.40);
+  --terracotta-20: rgba(168, 54, 6, 0.20);
+  --terracotta-08: rgba(168, 54, 6, 0.08);
+
+  --font-serif: 'Newsreader', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Master Reset within the Lab */
+.monumental-lab-root {
+  background-color: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-serif);
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Clean Hairline Rules */
+.hairline-datum {
+  height: 1px;
+  background-color: var(--bone-12);
+  width: 100%;
+  position: relative;
+}
+
+.hairline-datum--terracotta {
+  background-color: var(--terracotta);
+}
+
+.hairline-vertical {
+  width: 1px;
+  background-color: var(--bone-12);
+  height: 100%;
+  position: relative;
+}

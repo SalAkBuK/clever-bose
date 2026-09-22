@@ -1,0 +1,383 @@
+/**
+ * Approach B: Stratified Cutaway Assembly Styles
+ */
+
+.cutaway-stage {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  background: #07090d;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.cutaway-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: #10131b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cutaway-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cutaway-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  color: #a83606;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+
+.cutaway-title {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cutaway-depth-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.depth-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  color: #6a7382;
+}
+
+.depth-btn {
+  background: #171b26;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #8c95a5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.depth-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.depth-btn--active {
+  background: rgba(168, 54, 6, 0.2);
+  border-color: #a83606;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Viewport Containing the 3 Depth Planes */
+.cutaway-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.cutaway-plane {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+/* =========================================================================
+   PLANE 3 (DEEP): SQLite Database
+   ========================================================================= */
+.plane--sqlite {
+  z-index: 1;
+  background: #0a0c10;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.plane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+}
+
+.plane-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #e5c78f;
+  letter-spacing: 0.1em;
+}
+
+.plane-tech {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  color: #5c6575;
+}
+
+.sqlite-table-view {
+  display: flex;
+  flex-direction: column;
+  background: #06080b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10.5px;
+}
+
+.table-header-row {
+  display: grid;
+  grid-template-columns: 80px 140px 240px 160px 140px 1fr;
+  padding: 8px 14px;
+  background: #11141c;
+  color: #7d8696;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.table-data-row {
+  display: grid;
+  grid-template-columns: 80px 140px 240px 160px 140px 1fr;
+  padding: 10px 14px;
+  color: #b8c0cc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.table-data-row--highlight {
+  background: rgba(168, 54, 6, 0.08);
+  color: #ffffff;
+}
+
+.td-id { color: #e5c78f; }
+.td-tbl { color: #8c95a5; font-weight: 600; }
+.td-page { color: #6a7484; }
+.td-time { color: #00ff88; font-weight: 700; }
+
+/* =========================================================================
+   PLANE 2 (MIDDLE): Electron IPC Runtime
+   ========================================================================= */
+.plane--ipc {
+  z-index: 2;
+  background: #0f121a;
+  border-right: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 16px 0 40px rgba(0, 0, 0, 0.85);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ipc-pipeline-visualizer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 24px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+.ipc-node {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  background: #171b26;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.ipc-node--active {
+  border-color: #a83606;
+  background: rgba(168, 54, 6, 0.15);
+}
+
+.ipc-node-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  color: #7b8494;
+  font-weight: 700;
+}
+
+.ipc-node-val {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  color: #ffffff;
+}
+
+.ipc-arrow {
+  color: #4a5260;
+  font-size: 18px;
+}
+
+/* =========================================================================
+   PLANE 1 (FOREGROUND): Cashier Terminal UI
+   ========================================================================= */
+.plane--surface {
+  z-index: 3;
+  width: 100%;
+  box-shadow: 20px 0 50px rgba(0, 0, 0, 0.95);
+  pointer-events: none;
+}
+
+.surface-terminal-chassis {
+  height: 100%;
+  background: #151822;
+  border-right: 2px solid #a83606;
+  padding: 24px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.terminal-top-stripe {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10.5px;
+}
+
+.terminal-store { color: #ffffff; font-weight: 700; }
+.terminal-status { color: #00ff88; }
+
+.terminal-body-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+}
+
+.terminal-cart-col {
+  background: #1c202d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cart-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #e5c78f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 6px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.cart-imei-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  padding-top: 6px;
+}
+
+.imei-lbl { color: #6a7382; }
+
+.terminal-numpad-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tender-box {
+  background: #1c202d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tb-label { color: #6a7382; font-size: 9px; }
+.tb-val { color: #00ff88; font-weight: 700; }
+
+.terminal-action-btn {
+  background: #a83606;
+  color: #ffffff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 12px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+/* Cutaway Aperture */
+.chassis-cutaway-aperture {
+  margin-top: auto;
+  border: 1.5px dashed rgba(229, 199, 143, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 12px 16px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cutaway-hatch-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 9.5px;
+  color: #e5c78f;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.cutaway-footer-note {
+  padding: 8px 24px;
+  background: #090c10;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  color: #636b7b;
+}
+
+.terracotta-text {
+  color: #a83606;
+  font-weight: 700;
+}
+
+/* Flat No-Occlusion Mode */
+.cutaway-stage--no-occlusion .plane--surface {
+  transform: none !important;
+  box-shadow: none;
+}
+.cutaway-stage--no-occlusion .plane--ipc,
+.cutaway-stage--no-occlusion .plane--sqlite {
+  display: none !important;
+}

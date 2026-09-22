@@ -1,0 +1,480 @@
+/**
+ * Master Comparison View Styles: Monumental Technical Editorial
+ * Strict 3-Color Discipline:
+ *   INK:              #080A0B
+ *   BONE:             #F2F0E9
+ *   SIGNAL TERRACOTTA: #A83606
+ */
+
+/* 1. MASTER FOLIO BANNER */
+.folio-masthead {
+  padding: 40px 56px 28px 56px;
+  background-color: var(--ink);
+  border-bottom: 1px solid var(--bone-12);
+}
+
+.masthead-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.masthead-identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.masthead-roman {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-style: italic;
+  color: var(--terracotta);
+  line-height: 1;
+}
+
+.masthead-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.masthead-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--bone-40);
+}
+
+.masthead-headline {
+  font-family: var(--font-serif);
+  font-size: 46px;
+  line-height: 1.05;
+  font-weight: 400;
+  color: var(--bone);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.masthead-subhead {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--bone-60);
+  margin: 4px 0 0 0;
+}
+
+.masthead-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.masthead-tool-btn {
+  background: none;
+  border: 1px solid var(--bone-20);
+  color: var(--bone-80);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.masthead-tool-btn:hover {
+  border-color: var(--bone-60);
+  color: var(--bone);
+}
+
+.masthead-tool-btn--active {
+  border-color: var(--terracotta);
+  color: var(--bone);
+  background-color: var(--terracotta-08);
+}
+
+.tool-indicator {
+  font-size: 8px;
+  color: var(--terracotta);
+}
+
+.masthead-back-btn {
+  background: none;
+  border: 1px solid var(--bone-12);
+  color: var(--bone-40);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.masthead-back-btn:hover {
+  color: var(--bone);
+  border-color: var(--bone-40);
+}
+
+/* 2. COMPOSITION SELECTOR TABS */
+.composition-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: var(--ink);
+  border-bottom: 1px solid var(--bone-12);
+}
+
+.comp-tab-btn {
+  background: none;
+  border: none;
+  border-right: 1px solid var(--bone-08);
+  padding: 22px 32px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: background-color 0.2s ease;
+  position: relative;
+}
+
+.comp-tab-btn:hover {
+  background-color: var(--bone-04);
+}
+
+.comp-tab-btn--active {
+  background-color: var(--bone-08);
+}
+
+.comp-tab-btn--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--terracotta);
+}
+
+.tab-ordinal {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--terracotta);
+  font-weight: 500;
+  padding-top: 2px;
+}
+
+.tab-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tab-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--bone);
+  letter-spacing: -0.01em;
+}
+
+.tab-sub {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--bone-40);
+  line-height: 1.4;
+}
+
+/* 3. ACTIVE COMPOSITION THEATRE */
+.composition-theatre {
+  position: relative;
+  width: 100%;
+  background-color: var(--ink);
+}
+
+.theatre-stage {
+  width: 100%;
+}
+
+/* Triptych Layout */
+.theatre-triptych {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 40px 56px 60px 56px;
+  background-color: var(--ink);
+}
+
+.triptych-sync-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border: 1px solid var(--bone-12);
+  background-color: var(--ink);
+}
+
+.sync-bar-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  color: var(--bone-40);
+}
+
+.sync-stage-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.sync-stage-btn {
+  background: none;
+  border: 1px solid var(--bone-12);
+  padding: 6px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--bone-60);
+  transition: all 0.15s ease;
+}
+
+.sync-stage-btn:hover {
+  color: var(--bone);
+  border-color: var(--bone-40);
+}
+
+.sync-stage-btn--active {
+  border-color: var(--terracotta);
+  color: var(--bone);
+  background-color: var(--terracotta-08);
+}
+
+.btn-index {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.btn-name {
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  font-style: italic;
+}
+
+.btn-elev {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--bone-40);
+}
+
+.triptych-item {
+  border: 1px solid var(--bone-12);
+  background-color: var(--ink);
+}
+
+.triptych-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--bone-12);
+  background-color: var(--ink);
+}
+
+.triptych-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.triptych-elev {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--bone-40);
+}
+
+/* 4. EDITORIAL CRITIQUE SECTION */
+.editorial-critique-section {
+  padding: 72px 56px;
+  border-top: 1px solid var(--bone-12);
+  background-color: var(--ink);
+}
+
+.critique-header {
+  margin-bottom: 48px;
+}
+
+.critique-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--terracotta);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.critique-title {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--bone);
+  margin: 0 0 10px 0;
+  letter-spacing: -0.015em;
+}
+
+.critique-desc {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--bone-60);
+  margin: 0;
+  max-width: 720px;
+}
+
+.critique-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.critique-col {
+  border-top: 1px solid var(--bone-12);
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.critique-col-code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.critique-col-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--bone);
+  margin: 0;
+}
+
+.critique-col-body {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--bone-80);
+  margin: 0;
+}
+
+.critique-col-body strong {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--bone);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.critique-col-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--bone-08);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tag-key {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  color: var(--bone-40);
+}
+
+.tag-val {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--bone);
+}
+
+/* 5. CONTINUITY VERIFICATION: THE PROTECTED 1888 VIADUCT FOOTER */
+.viaduct-continuity-section {
+  padding: 64px 56px 80px 56px;
+  border-top: 1px solid var(--bone-12);
+  background-color: var(--ink);
+}
+
+.viaduct-continuity-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  gap: 32px;
+}
+
+.continuity-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.continuity-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--terracotta);
+  font-weight: 500;
+}
+
+.continuity-title {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--bone);
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.continuity-desc {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--bone-60);
+  margin: 0;
+  max-width: 680px;
+}
+
+.continuity-toggle-btn {
+  background: none;
+  border: 1px solid var(--bone-20);
+  color: var(--bone-80);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  padding: 10px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.continuity-toggle-btn:hover {
+  border-color: var(--bone-60);
+  color: var(--bone);
+}
+
+.viaduct-footer-enclosure {
+  border: 1px solid var(--bone-12);
+  position: relative;
+  overflow: hidden;
+}
